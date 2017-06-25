@@ -149,7 +149,6 @@ abstract class LinearBlock : ViewContainer() {
                 Gravity.END -> END
                 Gravity.CENTER -> CENTER
                 Gravity.NOT_SET -> NOT_SET
-                else -> START
             }
         }
 
