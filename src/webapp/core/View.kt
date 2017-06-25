@@ -152,6 +152,14 @@ open class View {
     }
 
     /**
+     * Splits view from parent.
+     * NOTE: Must be called directly by parent to prevent reattaching view on parent redraws
+     */
+    internal fun splitFromParent() {
+        element.parentElement?.removeChild(element)
+    }
+
+    /**
      * Sets property to style of this view
      *
      * Note wrong value may be filtered by system

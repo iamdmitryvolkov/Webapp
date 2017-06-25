@@ -14,7 +14,7 @@ abstract class ViewContainer : View() {
     /**
      * List of Views in container
      */
-    var viewsList = mutableListOf<View>()
+    protected var viewsList = mutableListOf<View>()
 
     /**
      * Render all views to target view
@@ -37,6 +37,7 @@ abstract class ViewContainer : View() {
         viewsList.add(view)
         if (isContentRendered) {
             applyStyle(view, viewsList.size)
+            view.render(element)
         }
     }
 
@@ -50,9 +51,44 @@ abstract class ViewContainer : View() {
         if (index == viewsList.size) {
             append(view)
         } else {
+            // TODO: use insertAfter instead of redraw
             viewsList.add(index, view)
             redraw()
         }
+    }
+
+    /**
+     * Removes child from container
+     */
+    fun removeChild(number : Int) {
+        if (number >= viewsList.size) throw Exception("View not found")
+        val view = viewsList.removeAt(number)
+        view.splitFromParent()
+    }
+
+    /**
+     * Removes child from container
+     *
+     * Does nothing if child is not found
+     */
+    fun removeChild(child : View) {
+        val index = viewsList.indexOf(child)
+        if (index != -1) removeChild(index)
+    }
+
+    /**
+     * Removes all views from parent
+     */
+    fun removeAllViews() {
+        viewsList.clear()
+        redraw()
+    }
+
+    /**
+     * Returns list of views it container
+     */
+    fun getSubViewList() : List<View> {
+        return viewsList.toList()
     }
 
     /**
