@@ -58,6 +58,13 @@ abstract class ViewContainer : View() {
     }
 
     /**
+     * Returns index of view on container. returns -1 if view is not found
+     */
+    fun indexOf(view : View) : Int {
+        return viewsList.indexOf(view)
+    }
+
+    /**
      * Removes child from container
      */
     fun removeChild(number : Int) {
