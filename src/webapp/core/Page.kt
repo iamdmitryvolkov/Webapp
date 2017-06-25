@@ -1,6 +1,8 @@
 package webapp.core
 
 import org.w3c.dom.Element
+import org.w3c.dom.HTMLElement
+import webapp.util.Color
 import kotlin.browser.document
 import webapp.view.TopBar
 import kotlin.dom.clear
@@ -47,12 +49,12 @@ open class Page(protected val app : Application, title : String = NOTHING) : Cor
     /**
      * Link to root [Element] of content of [Page]
      */
-    protected var contentElement : Element = document.createDiv()
+    private var contentElement : HTMLElement = document.createDiv() as HTMLElement
 
     /**
      * Root [Element] of [Page]
      */
-    private val rootElement : Element = document.createDiv()
+    private val rootElement : HTMLElement = document.createDiv() as HTMLElement
 
     /**
      * Internal function to load page
@@ -176,6 +178,17 @@ open class Page(protected val app : Application, title : String = NOTHING) : Cor
         app.showPage(page)
     }
 
+    /**
+     * Init block
+     */
+    init {
+        rootElement.style.backgroundColor = Color.GREY_50
+        rootElement.style.height = "100%"
+    }
+
+    /**
+     * Internal class to handle state of page
+     */
     private enum class State {
         NOT_INITIALIZED,
         LOADING,
@@ -184,9 +197,6 @@ open class Page(protected val app : Application, title : String = NOTHING) : Cor
         DESTROYED
     }
 
-    /**
-     * Internal class to handle state of page
-     */
     companion object {
 
         private const val NOTHING = ""
