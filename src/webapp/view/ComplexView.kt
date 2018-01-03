@@ -24,5 +24,4 @@ abstract class ComplexView : View() {
         super.renderContent()
         subView?.render(element)
     }
-
 }

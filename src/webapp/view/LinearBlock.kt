@@ -76,9 +76,8 @@ abstract class LinearBlock : ViewContainer() {
      * Applies style values to child views
      *
      * @param view View to apply style
-     * @param i number of view in list
      */
-    override fun applyStyle(view: View, i: Int) {
+    override fun applyStyle(view: View) {
         // Weight
         view.getStyle().flexGrow = view.weight.toString()
         // Gravity

@@ -12,7 +12,7 @@ class TopBar : ComplexView() {
 
     private var titleLabel = createTitleLabel("App name goes here")
 
-    // TODO: provide logic to add "UP" button, and menu]
+    // TODO: provide logic to add "UP" button, and menu
 
     /**
      * Title text in TopBar

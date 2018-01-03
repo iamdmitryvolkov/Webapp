@@ -129,9 +129,14 @@ open class View {
      * @see redraw
      *
      * @param parent - parent element, in which View should be rendered to
+     * @param index describes position of View in parent. View will be added to end if null
      */
-    open fun render(parent : Element) {
-        parent.appendChild(element)
+    open fun render(parent : Element, index : Int? = null) {
+        if (index != null) {
+            parent.insertBefore(element, parent.childNodes.item(index))
+        } else {
+            parent.appendChild(element)
+        }
         renderContent()
     }
 

@@ -21,8 +21,8 @@ abstract class ViewContainer : View() {
      */
     override fun renderContent() {
         super.renderContent()
-        for ((i, view) in viewsList.withIndex()) {
-            applyStyle(view, i)
+        for (view in viewsList) {
+            applyStyle(view)
             view.render(element)
         }
         isContentRendered = true
@@ -36,7 +36,7 @@ abstract class ViewContainer : View() {
     fun append(view : View) {
         viewsList.add(view)
         if (isContentRendered) {
-            applyStyle(view, viewsList.size)
+            applyStyle(view)
             view.render(element)
         }
     }
@@ -51,9 +51,8 @@ abstract class ViewContainer : View() {
         if (index == viewsList.size) {
             append(view)
         } else {
-            // TODO: use insertAfter instead of redraw
             viewsList.add(index, view)
-            redraw()
+            if (isContentRendered) view.render(element, index)
         }
     }
 
@@ -110,9 +109,8 @@ abstract class ViewContainer : View() {
      * Applies specific for layout style to view
      *
      * @param view View to apply style
-     * @param i number of view in list
      */
-    abstract fun applyStyle(view : View, i : Int)
+    abstract fun applyStyle(view : View)
 
     companion object {
 
