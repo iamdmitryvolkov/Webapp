@@ -117,23 +117,23 @@ open class ListView<T : ListView.ViewHolder>(adapter: Adapter<T>) : ComplexView(
     /**
      * Insert sections into ListView
      *
-     * @param section index of inserted section
+     * @param startIndex index of inserted section
      * @param count count of new sections
      */
-    open fun notifySectionRangeInserted(section: Int, count : Int) {
+    open fun notifySectionRangeInserted(startIndex: Int, count : Int) {
         for (i in 0 until count) {
             val sectionList = mutableListOf<T>()
-            holdersPool.add(section + i, sectionList)
-            val itemsCount = adapter.getItemsInSectionCount(section + i)
+            holdersPool.add(startIndex + i, sectionList)
+            val itemsCount = adapter.getItemsInSectionCount(startIndex + i)
             if (isSectionHeadersVisible) {
-                val name = adapter.getSectionHeader(section + i)!!
-                block.add(name, calculateNewSectionNameIndex(section + i))
-                sectionHeadersPool.add(section + i, name)
+                val name = adapter.getSectionHeader(startIndex + i)!!
+                block.add(name, calculateNewSectionNameIndex(startIndex + i))
+                sectionHeadersPool.add(startIndex + i, name)
             }
             for (j in 0 until itemsCount) {
                 val holder = adapter.createViewHolder()
-                adapter.bindViewHolder(holder, section + i, j)
-                block.add(holder.item, calculateNewElementIndex(section + i, j))
+                adapter.bindViewHolder(holder, startIndex + i, j)
+                block.add(holder.item, calculateNewElementIndex(startIndex + i, j))
                 sectionList.add(holder)
             }
         }
@@ -152,15 +152,15 @@ open class ListView<T : ListView.ViewHolder>(adapter: Adapter<T>) : ComplexView(
     /**
      * Removes sections into ListView
      *
-     * @param section index of first removed section
+     * @param startIndex index of first removed section
      * @param count count of removed sections
      */
-    open fun notifySectionRangeRemoved(section: Int, count : Int) {
+    open fun notifySectionRangeRemoved(startIndex: Int, count : Int) {
         for (i in 0 until count) {
             if (isSectionHeadersVisible) {
-                block.removeChild(sectionHeadersPool[section])
+                block.removeChild(sectionHeadersPool[startIndex])
             }
-            val sectionHolders = holdersPool.removeAt(section)
+            val sectionHolders = holdersPool.removeAt(startIndex)
             for (holder in sectionHolders) {
                 block.removeChild(holder.item)
             }
@@ -188,12 +188,12 @@ open class ListView<T : ListView.ViewHolder>(adapter: Adapter<T>) : ComplexView(
      * if you want to reload items, you must use [notifyDatasetChanged]
      *
      * @param section index of section with changed elements
-     * @param startNumber index of first changed element
+     * @param startIndex index of first changed element
      * @param count count of changed items
      */
-    open fun notifyItemRangeChanged(section: Int, startNumber : Int, count : Int) {
+    open fun notifyItemRangeChanged(section: Int, startIndex: Int, count : Int) {
         for (i in 0 until count) {
-            val index = startNumber + i
+            val index = startIndex + i
             adapter.bindViewHolder(holdersPool[section][index], section, index)
         }
     }
