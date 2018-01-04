@@ -1,6 +1,7 @@
 package webapp.core
 
 import org.w3c.dom.Element
+import org.w3c.dom.HTMLElement
 import kotlin.browser.document
 import kotlin.browser.window
 import kotlin.dom.clear
@@ -46,13 +47,21 @@ abstract class Application : CoreFeatures {
      * @see [getDefaultPage]
      */
     fun start() {
-        document.body!!.style.margin = "0px" // remove padding
+        setupDocumentBody(document.body!!)
         if (isStarted) throw IllegalStateException("Application can be stared only once")
         isStarted = true
         window.onfocus = {onGetFocus()}
         window.onblur = {onLostFocus()}
         window.onresize = {onResize()}
         showPage(getDefaultPage())
+    }
+
+    /**
+     * Applies initial values to document.body
+     */
+    open protected fun setupDocumentBody(body: HTMLElement) {
+        body.style.margin = "0px"
+        body.style.overflowX = "hidden"
     }
 
     /**
