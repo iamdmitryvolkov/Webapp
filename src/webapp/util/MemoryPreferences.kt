@@ -15,4 +15,8 @@ class MemoryPreferences : BasePreferences() {
     override fun getString(key: String, defaultValue: String?): String? {
         return dataMap[key] ?: defaultValue
     }
+
+    override fun removePreference(key: String) {
+        dataMap.remove(key)
+    }
 }

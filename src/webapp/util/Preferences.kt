@@ -24,4 +24,6 @@ interface Preferences {
     fun getFloat(key: String, defaultValue: Float? = null): Float?
 
     fun getDouble(key: String, defaultValue: Double? = null): Double?
+
+    fun removePreference(key: String)
 }

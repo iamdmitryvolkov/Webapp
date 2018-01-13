@@ -42,6 +42,12 @@ class CookiePreferences(private val keyPrefix: String = "",
         save(targetKey, cookiesExpirePolicy.getCookieExpireDate())
     }
 
+    override fun removePreference(key: String) {
+        val targetKey = getKey(key)
+        cookieMap.remove(targetKey)
+        removeCookie(targetKey)
+    }
+
     /**
      * Update expiration date of all cookies to target
      */
@@ -138,6 +144,12 @@ class CookiePreferences(private val keyPrefix: String = "",
                 result += OBJECTS_SEPARATOR + EXPIRES + KEY_VALUE_SEPARATOR + date.toUTCString()
             }
             return result
+        }
+
+        private fun removeCookie(key: String) {
+            val cookie = key + KEY_VALUE_SEPARATOR
+            val date = Date().apply { setTime(-1.0) }
+            document.cookie = appendExpirationDate(cookie, date)
         }
     }
 }
