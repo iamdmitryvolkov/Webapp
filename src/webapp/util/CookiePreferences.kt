@@ -12,23 +12,23 @@ import kotlin.browser.window
 class CookiePreferences(private val keyPrefix: String = "") : BasePreferences() {
 
     private fun getKey(key: String): String {
-        return window.btoa(keyPrefix + key)
+        return encode(keyPrefix + key)
     }
 
     override fun getString(key: String, defaultValue: String?): String? {
-        return cookieMap[getKey(key)]?.let { window.atob(it) } ?: defaultValue
+        return cookieMap[getKey(key)]?.let { decode(it) } ?: defaultValue
     }
 
     override fun putString(key: String, value: String) {
-        cookieMap.put(getKey(key), window.btoa(value))
+        cookieMap.put(getKey(key), encode(value))
         save()
     }
 
     companion object {
 
         private const val OBJECTS_SEPARATOR = "; "
-
         private const val KEY_VALUE_SEPARATOR = "="
+        private const val ENCODED_SEPARATOR = "*"
 
         private val cookieMap = mutableMapOf<String, String>()
 
@@ -37,7 +37,17 @@ class CookiePreferences(private val keyPrefix: String = "") : BasePreferences() 
                     .split(OBJECTS_SEPARATOR)
                     .filter { it.isNotEmpty() }
                     .map { it.split(KEY_VALUE_SEPARATOR) }
-                    .forEach { cookieMap.put(it[0], it[1]) }
+                    .forEach { checkDataAndPutToMap(it) }
+        }
+
+        private fun encode(data: String) = window.btoa(data).replace(KEY_VALUE_SEPARATOR, ENCODED_SEPARATOR)
+
+        private fun decode(data: String) = window.atob(data.replace(ENCODED_SEPARATOR, KEY_VALUE_SEPARATOR))
+
+        private fun checkDataAndPutToMap(data: List<String>) {
+            if (data.size == 2) {
+                cookieMap.put(data[0], data[1])
+            }
         }
 
         private fun save() {
