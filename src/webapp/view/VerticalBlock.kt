@@ -17,5 +17,4 @@ open class VerticalBlock : LinearBlock() {
      * Returns column value as main axis
      */
     override fun getFlexDirectionAxis() = "column"
-
 }

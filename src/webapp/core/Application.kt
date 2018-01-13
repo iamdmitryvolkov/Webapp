@@ -21,7 +21,7 @@ abstract class Application : CoreFeatures {
     /**
      * The main div, in which app will render
      */
-    val rootElement : Element = document.getElementById(ID_ROOT_ELEMENT)!!
+    val rootElement: Element = document.getElementById(ID_ROOT_ELEMENT)!!
 
     /**
      * True if app is waiting for page lifecycle. In this case callback will not be called
@@ -29,7 +29,7 @@ abstract class Application : CoreFeatures {
     var isWaitingForPageLifecycle = false
         private set(value) {field = value}
 
-    private var currentPage : Page? = null
+    private var currentPage: Page? = null
     private var isStarted = false
 
     /**
@@ -37,7 +37,7 @@ abstract class Application : CoreFeatures {
      *
      * @return default page
      */
-    abstract fun getDefaultPage() : Page
+    abstract fun getDefaultPage(): Page
 
     /**
      * Loads default [Page] and starts the application
@@ -69,7 +69,7 @@ abstract class Application : CoreFeatures {
      *
      * @param page the page to be shown
      */
-    override fun showPage(page : Page) {
+    override fun showPage(page: Page) {
         if (!isStarted) throw IllegalStateException("Application is not started")
         if (isWaitingForPageLifecycle) return
         isWaitingForPageLifecycle = true
@@ -108,5 +108,4 @@ abstract class Application : CoreFeatures {
 
         private const val ID_ROOT_ELEMENT = "application_root"
     }
-
 }

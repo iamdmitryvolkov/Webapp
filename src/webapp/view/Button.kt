@@ -7,7 +7,7 @@ import kotlin.browser.document
 /**
  * Button class
  */
-open class Button(text : String) : TextView(text) {
+open class Button(text: String) : TextView(text) {
 
     /**
      * Root element's factory method.

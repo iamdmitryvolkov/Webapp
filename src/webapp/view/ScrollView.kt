@@ -8,12 +8,12 @@ import webapp.core.View
  *
  * You should set [childView], that will scrolls into ScrollView
  */
-class ScrollView(child : View? = null) : ComplexView() {
+class ScrollView(child: View? = null) : ComplexView() {
 
     /**
      * Child view, visible inside ScrollView
      */
-    var childView : View?
+    var childView: View?
     get() = subView
     set(value) {
         subView = value
@@ -61,8 +61,8 @@ class ScrollView(child : View? = null) : ComplexView() {
     }
 
     companion object {
+
         private const val HIDDEN_OVERFLOW = "hidden"
         private const val SCROLLABLE_OVERFLOW = "scroll"
     }
-
 }

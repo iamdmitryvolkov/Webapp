@@ -10,7 +10,7 @@ import webapp.util.Color
  *
  * Override [createElementWithText] method to provide logic to different [Element]
  */
-abstract class TextView(text : String) : BaseTextView() {
+abstract class TextView(text: String) : BaseTextView() {
 
     /**
      * Horizontal alignment of text
@@ -24,7 +24,7 @@ abstract class TextView(text : String) : BaseTextView() {
     /**
      * Text value
      */
-    var text : String
+    var text: String
         get() = textElement.innerText
         set(value) {
             setText(value)
@@ -35,7 +35,7 @@ abstract class TextView(text : String) : BaseTextView() {
      *
      * @param value new text value
      */
-    open fun setText(value : String) {
+    open fun setText(value: String) {
         textElement.innerText = value
     }
 
@@ -56,7 +56,7 @@ abstract class TextView(text : String) : BaseTextView() {
     /**
      * Enum class to describe horizontal text alignment
      */
-    enum class TextAlign(internal val cssValue : String) {
+    enum class TextAlign(internal val cssValue: String) {
         LEFT(TextView.LEFT),
         CENTER(TextView.CENTER),
         RIGHT(TextView.RIGHT),
@@ -71,7 +71,5 @@ abstract class TextView(text : String) : BaseTextView() {
         private const val RIGHT = "right"
         private const val START = "start"
         private const val END = "end"
-
     }
-
 }

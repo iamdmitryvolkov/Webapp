@@ -36,5 +36,4 @@ abstract class BasePreferences : Preferences {
     override fun getDouble(key: String, defaultValue: Double?): Double? {
         return getString(key)?.toDouble() ?: defaultValue
     }
-
 }

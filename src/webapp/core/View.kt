@@ -31,7 +31,7 @@ open class View {
      * if you try to set value like "http:/example.org/image.jpg"
      * then url(http:/example.org/image.jpg) will be set automatically
      */
-    var background : String
+    var background: String
         get() {
             var result = element.style.background
             if (result.isNotEmpty()) return result
@@ -48,21 +48,21 @@ open class View {
     /**
      * Alpha of this View
      */
-    var alpha : String
+    var alpha: String
         get() = element.style.opacity
         set(value) { setAlpha(value) }
 
     /**
      * Width of this View
      */
-    var width : String
+    var width: String
         get() = element.style.width
         set(value) { setWidth(value) }
 
     /**
      * Height of this View
      */
-    var height : String
+    var height: String
         get() = element.style.height
         set(value) { setHeight(value) }
 
@@ -75,7 +75,7 @@ open class View {
      * Gravity of image
      * Used by some [ViewContainer]
      */
-    var gravity : Gravity
+    var gravity: Gravity
         get() = gravityHolder
         set(value) { setGravity(value)}
 
@@ -88,14 +88,14 @@ open class View {
      * Gravity of image
      * Used by some [ViewContainer]
      */
-    var weight : Int
+    var weight: Int
         get() = weightHolder
         set(value) { setWeight(value)}
 
     /**
      * Scale mode of image on background
      */
-    var backgroundImageScale : ImageScale = ImageScale.STRETCH
+    var backgroundImageScale: ImageScale = ImageScale.STRETCH
         set(value) {
             field = value
             applyBackgroundImageScale()
@@ -104,21 +104,21 @@ open class View {
     /**
      * Padding of this View
      */
-    var padding : String
+    var padding: String
         get() = element.style.padding
         set(value) { setPadding(value) }
 
     /**
      * Margin of this View
      */
-    var margin : String
+    var margin: String
         get() = element.style.margin
         set(value) { setMargin(value) }
 
     /**
      * Click listener for View
      */
-    var onClickListener : ((Event) -> dynamic)?
+    var onClickListener: ((Event) -> dynamic)?
         get() = element.onclick
         set(value) { setOnClickListener(value)}
 
@@ -131,7 +131,7 @@ open class View {
      * @param parent - parent element, in which View should be rendered to
      * @param index describes position of View in parent. View will be added to end if null
      */
-    open fun render(parent : Element, index : Int? = null) {
+    open fun render(parent: Element, index: Int? = null) {
         if (index != null) {
             parent.insertBefore(element, parent.childNodes.item(index))
         } else {
@@ -172,7 +172,7 @@ open class View {
      * @param property - property name
      * @param value - property value to set
      */
-    fun setStyleProperty(property : String, value : String) {
+    fun setStyleProperty(property: String, value: String) {
         element.style.setProperty(property, value)
     }
 
@@ -181,14 +181,14 @@ open class View {
      *
      * @param property property name
      */
-    fun getStyleProperty(property: String) : String {
+    fun getStyleProperty(property: String): String {
         return element.style.getPropertyValue(property)
     }
 
     /**
      * Gets CSS style
      */
-    fun getStyle() : CSSStyleDeclaration = element.style
+    fun getStyle(): CSSStyleDeclaration = element.style
 
     /**
      * Sets background value
@@ -199,7 +199,7 @@ open class View {
      *
      * @param value value of background
      */
-    open fun setBackground(value : String) {
+    open fun setBackground(value: String) {
         if (value.isUrl()) {
             element.style.background = value.wrapUrl()
         } else {
@@ -212,7 +212,7 @@ open class View {
      *
      * @param value new width value
      */
-    fun setWidth(value : Int) {
+    fun setWidth(value: Int) {
         setWidth(value.px)
     }
 
@@ -221,7 +221,7 @@ open class View {
      *
      * @param value new width value
      */
-    open fun setWidth(value : String) {
+    open fun setWidth(value: String) {
         element.style.width = value
     }
 
@@ -230,7 +230,7 @@ open class View {
      *
      * @param value new height value
      */
-    fun setHeight(value : Int) {
+    fun setHeight(value: Int) {
         setHeight(value.px)
     }
 
@@ -239,7 +239,7 @@ open class View {
      *
      * @param value new height value
      */
-    open fun setHeight(value : String) {
+    open fun setHeight(value: String) {
         element.style.height = value
     }
 
@@ -249,7 +249,7 @@ open class View {
      *
      * @param value new weight value
      */
-    open fun setWeight(value : Int) {
+    open fun setWeight(value: Int) {
         weightHolder = value
     }
 
@@ -259,7 +259,7 @@ open class View {
      *
      * @param value new gravity value
      */
-    open fun setGravity(value : Gravity) {
+    open fun setGravity(value: Gravity) {
         gravityHolder = value
     }
 
@@ -268,7 +268,7 @@ open class View {
      *
      * @param value new alpha value
      */
-    fun setAlpha(value : Float) {
+    fun setAlpha(value: Float) {
         setAlpha(value.toString())
     }
 
@@ -277,7 +277,7 @@ open class View {
      *
      * @param value new alpha value
      */
-    open fun setAlpha(value : String) {
+    open fun setAlpha(value: String) {
         element.style.opacity = value
     }
 
@@ -286,7 +286,7 @@ open class View {
      *
      * @param value new padding value
      */
-    fun setPadding(value : Int) {
+    fun setPadding(value: Int) {
         setPadding(value.px)
     }
 
@@ -295,7 +295,7 @@ open class View {
      *
      * @param value new padding value
      */
-    open fun setPadding(value : String) {
+    open fun setPadding(value: String) {
         element.style.padding = value
     }
 
@@ -307,7 +307,7 @@ open class View {
      * @param left new left padding value
      * @param right new right padding value
      */
-    fun setPadding(top : Int, bottom : Int, left : Int, right : Int) {
+    fun setPadding(top: Int, bottom: Int, left: Int, right: Int) {
         setPadding(top.px, bottom.px, left.px, right.px)
     }
 
@@ -319,7 +319,7 @@ open class View {
      * @param left new left padding value
      * @param right new right padding value
      */
-    open fun setPadding(top : String, bottom : String, left : String, right : String) {
+    open fun setPadding(top: String, bottom: String, left: String, right: String) {
         element.style.paddingTop = top
         element.style.paddingBottom = bottom
         element.style.paddingLeft = left
@@ -331,7 +331,7 @@ open class View {
      *
      * @param value new margin value
      */
-    fun setMargin(value : Int) {
+    fun setMargin(value: Int) {
         setMargin(value.px)
     }
 
@@ -340,7 +340,7 @@ open class View {
      *
      * @param value new margin value
      */
-    open fun setMargin(value : String) {
+    open fun setMargin(value: String) {
         element.style.margin = value
     }
 
@@ -352,7 +352,7 @@ open class View {
      * @param left new left margin value
      * @param right new right margin value
      */
-    fun setMargin(top : Int, bottom : Int, left : Int, right : Int) {
+    fun setMargin(top: Int, bottom: Int, left: Int, right: Int) {
         setMargin(top.px, bottom.px, left.px, right.px)
     }
 
@@ -364,7 +364,7 @@ open class View {
      * @param left new left margin value
      * @param right new right margin value
      */
-    open fun setMargin(top : String, bottom : String, left : String, right : String) {
+    open fun setMargin(top: String, bottom: String, left: String, right: String) {
         element.style.marginTop = top
         element.style.marginBottom = bottom
         element.style.marginLeft = left
@@ -384,7 +384,7 @@ open class View {
      *
      * @param value new onClickListener value
      */
-    open fun setOnClickListener(value : ((Event) -> dynamic)?) {
+    open fun setOnClickListener(value: ((Event) -> dynamic)?) {
         element.onclick = value
     }
 
@@ -401,7 +401,7 @@ open class View {
     /**
      * Describes scale mode for image
      */
-    enum class ImageScale(internal val backgroundSizeValue : String, internal  val backgroundRepeatValue : String) {
+    enum class ImageScale(internal val backgroundSizeValue: String, internal val backgroundRepeatValue: String) {
         STRETCH(COVER, ROUND),
         FIT(CONTAIN, NO_REPEAT)
     }

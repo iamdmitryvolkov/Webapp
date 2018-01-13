@@ -10,7 +10,7 @@ abstract class ComplexView : View() {
     /**
      * View, visible inside ComplexView
      */
-    protected var subView : View? = null
+    protected var subView: View? = null
         set(value) {
             field = value
             redraw()

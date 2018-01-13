@@ -17,7 +17,7 @@ class TopBar : ComplexView() {
     /**
      * Title text in TopBar
      */
-    var title : String
+    var title: String
     get() = titleLabel.text
     set(value) {
         titleLabel.setText(value)
@@ -26,7 +26,7 @@ class TopBar : ComplexView() {
     /**
      * Creates label to show [Page] title
      */
-    private fun createTitleLabel(title : String) : Label {
+    private fun createTitleLabel(title: String): Label {
         val label = Label(title)
         label.width = MATCH_PARENT
         label.height = MATCH_PARENT
@@ -53,7 +53,5 @@ class TopBar : ComplexView() {
     companion object {
 
         private const val APPBAR_HEIGHT = "70px"
-
     }
-
 }

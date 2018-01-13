@@ -15,7 +15,7 @@ class Color private constructor() {
         /**
          * Gets R channel value of color
          */
-        fun rValue(color : String) : Int {
+        fun rValue(color: String): Int {
             val pColor = color.filter { it in ADDITIONAL_COLOR_CHARS }
             if (pColor.startsWith(RGBA_PATTERN)) {
                 return pColor.substring(4).split(",")[0].toInt()
@@ -32,7 +32,7 @@ class Color private constructor() {
         /**
          * Gets G channel value of color
          */
-        fun gValue(color : String) : Int {
+        fun gValue(color: String): Int {
             val pColor = color.filter { it in ADDITIONAL_COLOR_CHARS }
             if (pColor.startsWith(RGBA_PATTERN)) {
                 return pColor.substring(4).split(",")[1].toInt()
@@ -49,7 +49,7 @@ class Color private constructor() {
         /**
          * Gets B channel value of color
          */
-        fun bValue(color : String) : Int {
+        fun bValue(color: String): Int {
             val pColor = color.filter { it in ADDITIONAL_COLOR_CHARS }
             if (pColor.startsWith(RGBA_PATTERN)) {
                 return pColor.substring(4).split(",")[2].toInt()
@@ -66,7 +66,7 @@ class Color private constructor() {
         /**
          * Gets A channel value of color
          */
-        fun aValue(color : String) : Int {
+        fun aValue(color: String): Int {
             val pColor = color.filter { it in HEX_CHARS + ADDITIONAL_COLOR_CHARS }
             if (pColor.startsWith(RGBA_PATTERN)) {
                 return pColor.substring(4).split(",")[3].toInt()
@@ -77,7 +77,7 @@ class Color private constructor() {
         /**
          * Gets text color for background color
          */
-        fun getTextColor(color : String) : String {
+        fun getTextColor(color: String): String {
             val sum = listOf(this::rValue, this::gValue, this::bValue).map { it(color) }.sum()
             if (sum > 128 * 3) { // background is light
                 return rgba(0, 0, 0, DEFAULT_TEXT_ALPHA)
@@ -95,7 +95,7 @@ class Color private constructor() {
          *
          * @return String like '#FFFFFF'
          */
-        fun rgbToHex(r : Int, g : Int, b : Int) : String {
+        fun rgbToHex(r: Int, g: Int, b: Int): String {
             return SHARP_PATTERN + listOf(r, g, b).map { Color.intToHex(it)}.asString()
         }
 
@@ -108,7 +108,7 @@ class Color private constructor() {
          *
          * @return String like 'rgb(255, 255, 255)'
          */
-        fun rgb(r : Int, g : Int, b : Int) : String {
+        fun rgb(r: Int, g: Int, b: Int): String {
             return "$RGB_PATTERN($r, $g, $b)"
         }
 
@@ -122,7 +122,7 @@ class Color private constructor() {
          *
          * @return String like 'rgb(255, 255, 255, 1.0)'
          */
-        fun rgba(r : Int, g : Int, b : Int, a : Int) : String {
+        fun rgba(r: Int, g: Int, b: Int, a: Int): String {
             return "$RGBA_PATTERN($r, $g, $b, ${a.toFloat() / 255})"
         }
 
@@ -136,7 +136,7 @@ class Color private constructor() {
          *
          * @return String like 'rgb(255, 255, 255, 1.0)'
          */
-        fun rgba(r : Int, g : Int, b : Int, a : Float) : String {
+        fun rgba(r: Int, g: Int, b: Int, a: Float): String {
             return "$RGBA_PATTERN($r, $g, $b, $a)"
         }
 
@@ -147,7 +147,7 @@ class Color private constructor() {
          *
          * @return hex value of channel [00-FF]
          */
-        private fun intToHex(value : Int) : String {
+        private fun intToHex(value: Int): String {
 
             return listOf(0xF0, 0x0F)
                     .map { value and it }
@@ -164,7 +164,7 @@ class Color private constructor() {
          *
          * @return hex value of channel [00-FF]
          */
-        private fun hexCharValue(char : Char) = HEX_CHARS.indexOf(char, ignoreCase = true)
+        private fun hexCharValue(char: Char) = HEX_CHARS.indexOf(char, ignoreCase = true)
 
         /**
          * Gets Int value of hex string
@@ -173,7 +173,7 @@ class Color private constructor() {
          *
          * @return hex value of channel [00-FF]
          */
-        private fun hexToInt(value : String) : Int {
+        private fun hexToInt(value: String): Int {
             var result = 0
             for (c in value) {
                 result *= 16
@@ -185,7 +185,7 @@ class Color private constructor() {
         /**
          * Checks that value is color
          */
-        fun isColor(value : String) : Boolean {
+        fun isColor(value: String): Boolean {
             // TODO: use regex
             if (value.startsWith(RGB_PATTERN)) return true
             if (value.startsWith(RGBA_PATTERN)) return true
@@ -535,5 +535,4 @@ class Color private constructor() {
         const val BLACK = "#000000"
         const val WHITE = "#FFFFFF"
     }
-
 }

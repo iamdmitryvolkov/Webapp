@@ -82,7 +82,7 @@ open class Frame : ViewContainer() {
      *
      * @param flexValue string value to set into align style for this gravity
      */
-    enum class PrimaryGravityDirection(internal val flexValue : String) {
+    enum class PrimaryGravityDirection(internal val flexValue: String) {
         HORIZONTAL(COLUMN),
         VERTICAL(ROW);
     }
@@ -92,7 +92,7 @@ open class Frame : ViewContainer() {
      *
      * @param flexValue string value to set into align style for this gravity
      */
-    enum class PrimaryGravity(internal val flexValue : String) {
+    enum class PrimaryGravity(internal val flexValue: String) {
         START(FLEX_START),
         END(FLEX_END),
         CENTER(Frame.CENTER),
@@ -106,7 +106,7 @@ open class Frame : ViewContainer() {
              * @param gravity [View.Gravity] value for View
              * @return equal value of [PrimaryGravity]
              */
-            fun getByGravity(gravity : Gravity) = when (gravity) {
+            fun getByGravity(gravity: Gravity) = when (gravity) {
                 Gravity.START -> START
                 Gravity.END -> END
                 Gravity.CENTER -> CENTER
@@ -121,13 +121,14 @@ open class Frame : ViewContainer() {
      *
      * @param flexValue string value to set into justify-content style for this gravity
      */
-    enum class SecondaryGravity(internal val flexValue : String) {
+    enum class SecondaryGravity(internal val flexValue: String) {
         START(FLEX_START),
         END(FLEX_END),
         CENTER(Frame.CENTER);
     }
 
     companion object {
+
         private const val RELATIVE = "relative"
         private const val ABSOLUTE = "absolute"
         private const val FLEX = "flex"
@@ -139,5 +140,4 @@ open class Frame : ViewContainer() {
         private const val CENTER = "center"
         private const val NOTHING = ""
     }
-
 }

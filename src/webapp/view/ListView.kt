@@ -8,7 +8,7 @@ import webapp.core.View
  *
  * NOTE: Section headers are invisible if adapter defines only one section
  */
-open class ListView<T : ListView.ViewHolder>(adapter: Adapter<T>) : ComplexView() {
+open class ListView<T: ListView.ViewHolder>(adapter: Adapter<T>) : ComplexView() {
 
     /**
      * Pool with items of ListView
@@ -36,7 +36,7 @@ open class ListView<T : ListView.ViewHolder>(adapter: Adapter<T>) : ComplexView(
     /**
      * An adapter for List view. Provides data for ListView
      */
-    var adapter : Adapter<T> = adapter
+    var adapter: Adapter<T> = adapter
     set(value) {
         field = value
         notifyDatasetChanged()
@@ -73,7 +73,7 @@ open class ListView<T : ListView.ViewHolder>(adapter: Adapter<T>) : ComplexView(
      * @param number index of first inserted element
      * @param count count of inserted elements
      */
-    open fun notifyItemRangeInserted(section: Int, number: Int, count : Int) {
+    open fun notifyItemRangeInserted(section: Int, number: Int, count: Int) {
         for (i in 0 until count) {
             val holder = adapter.createViewHolder()
             adapter.bindViewHolder(holder, section, number + i)
@@ -99,7 +99,7 @@ open class ListView<T : ListView.ViewHolder>(adapter: Adapter<T>) : ComplexView(
      * @param number index of removed element
      * @param count count of removed elements
      */
-    open fun notifyItemRangeRemoved(section: Int, number: Int, count : Int) {
+    open fun notifyItemRangeRemoved(section: Int, number: Int, count: Int) {
         for (i in 0 until count) {
             block.removeChild(holdersPool[section].removeAt(number).item)
         }
@@ -120,7 +120,7 @@ open class ListView<T : ListView.ViewHolder>(adapter: Adapter<T>) : ComplexView(
      * @param startIndex index of inserted section
      * @param count count of new sections
      */
-    open fun notifySectionRangeInserted(startIndex: Int, count : Int) {
+    open fun notifySectionRangeInserted(startIndex: Int, count: Int) {
         for (i in 0 until count) {
             val sectionList = mutableListOf<T>()
             holdersPool.add(startIndex + i, sectionList)
@@ -155,7 +155,7 @@ open class ListView<T : ListView.ViewHolder>(adapter: Adapter<T>) : ComplexView(
      * @param startIndex index of first removed section
      * @param count count of removed sections
      */
-    open fun notifySectionRangeRemoved(startIndex: Int, count : Int) {
+    open fun notifySectionRangeRemoved(startIndex: Int, count: Int) {
         for (i in 0 until count) {
             if (isSectionHeadersVisible) {
                 block.removeChild(sectionHeadersPool[startIndex])
@@ -191,7 +191,7 @@ open class ListView<T : ListView.ViewHolder>(adapter: Adapter<T>) : ComplexView(
      * @param startIndex index of first changed element
      * @param count count of changed items
      */
-    open fun notifyItemRangeChanged(section: Int, startIndex: Int, count : Int) {
+    open fun notifyItemRangeChanged(section: Int, startIndex: Int, count: Int) {
         for (i in 0 until count) {
             val index = startIndex + i
             adapter.bindViewHolder(holdersPool[section][index], section, index)
@@ -219,7 +219,7 @@ open class ListView<T : ListView.ViewHolder>(adapter: Adapter<T>) : ComplexView(
      * @param startNumber index of first changed section, inclusive
      * @param count count of changed sections
      */
-    open fun notifySectionRangeChanged(startNumber : Int, count : Int) {
+    open fun notifySectionRangeChanged(startNumber: Int, count: Int) {
         for (i in 0 until count) {
             val section = startNumber + i
             val sectionHolders = holdersPool[section]
@@ -264,7 +264,7 @@ open class ListView<T : ListView.ViewHolder>(adapter: Adapter<T>) : ComplexView(
      * @param item target item
      * @return section of item. -1 if not found
      */
-    protected fun getSectionNumber(item : T) : Int {
+    protected fun getSectionNumber(item: T): Int {
         return (0 until holdersPool.size).firstOrNull { holdersPool[it].contains(item) } ?: -1
     }
 
@@ -274,7 +274,7 @@ open class ListView<T : ListView.ViewHolder>(adapter: Adapter<T>) : ComplexView(
      * @param list list with holders
      * @return last element in list. null if list is empty
      */
-    private fun getLastItem(list : List<List<T>>) : T? {
+    private fun getLastItem(list: List<List<T>>): T? {
         val filtredList = list.filter { it.isNotEmpty() }
         if (filtredList.isEmpty()) {
             return null
@@ -290,7 +290,7 @@ open class ListView<T : ListView.ViewHolder>(adapter: Adapter<T>) : ComplexView(
      * @param number index of element in section
      * @return index of element in [block]
      */
-    protected fun calculateNewSectionNameIndex(section : Int) : Int {
+    protected fun calculateNewSectionNameIndex(section: Int): Int {
         return calculateNewElementIndex(section, 0) - 1
     }
 
@@ -302,10 +302,10 @@ open class ListView<T : ListView.ViewHolder>(adapter: Adapter<T>) : ComplexView(
      * @param number index of element in section
      * @return index of element in [block]
      */
-    protected fun calculateNewElementIndex(section : Int, number: Int) : Int {
+    protected fun calculateNewElementIndex(section: Int, number: Int): Int {
         var sectionIsNotExist = false
         var sectionIsEmpty = false
-        var lastItem : T? = null
+        var lastItem: T? = null
 
         if (holdersPool.size <= section) {
             lastItem = getLastItem(holdersPool)
@@ -339,7 +339,7 @@ open class ListView<T : ListView.ViewHolder>(adapter: Adapter<T>) : ComplexView(
      * @param number index of element in section
      * @return index of element in [block]
      */
-    protected fun getExistingElementIndex(section : Int, number: Int) : Int {
+    protected fun getExistingElementIndex(section: Int, number: Int): Int {
         return block.indexOf(holdersPool[section][number].item)
     }
 
@@ -366,7 +366,7 @@ open class ListView<T : ListView.ViewHolder>(adapter: Adapter<T>) : ComplexView(
      *
      * @see invalidateSectionHeadersVisibility
      */
-    open protected fun handleSectionHeadersVisibilityChange(newValue : Boolean) {
+    open protected fun handleSectionHeadersVisibilityChange(newValue: Boolean) {
         if (newValue) {
             // create new
             for (section in 0 until adapter.getSectionsCount()) {
@@ -437,7 +437,7 @@ open class ListView<T : ListView.ViewHolder>(adapter: Adapter<T>) : ComplexView(
     /**
      * Class to hold data about Item
      */
-    abstract class ViewHolder(internal val item : View) {
+    abstract class ViewHolder(internal val item: View) {
 
         /**
          * Init block
@@ -451,7 +451,7 @@ open class ListView<T : ListView.ViewHolder>(adapter: Adapter<T>) : ComplexView(
     /**
      * ListView interface to set
      */
-    interface Adapter<T : ViewHolder> {
+    interface Adapter<T: ViewHolder> {
 
         /**
          * Defines count of sections in ListView
@@ -459,7 +459,7 @@ open class ListView<T : ListView.ViewHolder>(adapter: Adapter<T>) : ComplexView(
          *
          * @return count of sections in ListView
          */
-        fun getSectionsCount() : Int
+        fun getSectionsCount(): Int
 
         /**
          * Defines View, must be used as header for section
@@ -468,7 +468,7 @@ open class ListView<T : ListView.ViewHolder>(adapter: Adapter<T>) : ComplexView(
          * @param section number of section
          * @return [View] for section header
          */
-        fun getSectionHeader(section: Int) : View?
+        fun getSectionHeader(section: Int): View?
 
         /**
          * Defines count of items in section
@@ -476,7 +476,7 @@ open class ListView<T : ListView.ViewHolder>(adapter: Adapter<T>) : ComplexView(
          * @param section number of section
          * @return count of items in section
          */
-        fun getItemsInSectionCount(section : Int) : Int
+        fun getItemsInSectionCount(section: Int): Int
 
         /**
          * Creates a new ViewHolder
@@ -484,7 +484,7 @@ open class ListView<T : ListView.ViewHolder>(adapter: Adapter<T>) : ComplexView(
          *
          * @return new holder
          */
-        fun createViewHolder() : T
+        fun createViewHolder(): T
 
         /**
          * Binds ViewHolder to it number and section
@@ -493,8 +493,7 @@ open class ListView<T : ListView.ViewHolder>(adapter: Adapter<T>) : ComplexView(
          * @param section number of section
          * @param number number of item in section
          */
-        fun bindViewHolder(holder : T, section: Int, number: Int)
+        fun bindViewHolder(holder: T, section: Int, number: Int)
 
     }
-
 }

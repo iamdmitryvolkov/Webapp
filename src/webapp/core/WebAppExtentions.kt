@@ -66,4 +66,4 @@ fun String.isColor() = Color.isColor(this)
 /**
  * Wraps collection as string without spaces
  */
-fun <T> Collection<T>.asString() : String = fold("", { s, i -> s + i.toString() })
+fun <T> Collection<T>.asString(): String = fold("", { s, i -> s + i.toString() })

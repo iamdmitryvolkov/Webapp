@@ -13,7 +13,7 @@ import kotlin.dom.clear
  *
  * Override some open methods to create you own page
  */
-open class Page(protected val app : Application, title : String = NOTHING) : CoreFeatures {
+open class Page(protected val app: Application, title: String = NOTHING) : CoreFeatures {
 
     /**
      * Current state of [Page]
@@ -38,7 +38,7 @@ open class Page(protected val app : Application, title : String = NOTHING) : Cor
      * Link to root view of content of [Page]
      * null-value means no content
      */
-    protected var contentView : View? = null
+    protected var contentView: View? = null
     set(value) {
         field = value
         if (state == State.LOADED) {
@@ -49,12 +49,12 @@ open class Page(protected val app : Application, title : String = NOTHING) : Cor
     /**
      * Link to root [Element] of content of [Page]
      */
-    private var contentElement : HTMLElement = document.createDiv() as HTMLElement
+    private var contentElement: HTMLElement = document.createDiv() as HTMLElement
 
     /**
      * Root [Element] of [Page]
      */
-    private val rootElement : HTMLElement = document.createDiv() as HTMLElement
+    private val rootElement: HTMLElement = document.createDiv() as HTMLElement
 
     /**
      * Internal function to load page
@@ -94,7 +94,7 @@ open class Page(protected val app : Application, title : String = NOTHING) : Cor
      *
      * @param newState new state of focus
      */
-    fun notifyFocusChanged(newState : Boolean) {
+    fun notifyFocusChanged(newState: Boolean) {
         if (state == State.LOADED && newState != isFocused) {
             if (isFocused) {
                 onGetFocus()
@@ -111,7 +111,7 @@ open class Page(protected val app : Application, title : String = NOTHING) : Cor
      *
      * @param parent - parent element, in which View should be rendered to
      */
-    private fun render(parent : Element) {
+    private fun render(parent: Element) {
         parent.appendChild(rootElement)
         topBar.render(rootElement)
         rootElement.appendChild(contentElement)

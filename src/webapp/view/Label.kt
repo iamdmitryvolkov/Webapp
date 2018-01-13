@@ -8,7 +8,7 @@ import kotlin.browser.document
 /**
  * Class to show text
  */
-open class Label(text : String) : TextView(text) {
+open class Label(text: String) : TextView(text) {
 
     /**
      * Text element's factory method.
@@ -61,6 +61,5 @@ open class Label(text : String) : TextView(text) {
         private const val ROW  = "row"
         private const val FLEX_START = "flex-start"
         private const val FLEX_END = "flex-end"
-
     }
 }

@@ -8,7 +8,7 @@ import kotlin.browser.document
 /**
  * Class to provide text input from user
  */
-open class Input(text : String= "") : BaseTextView() {
+open class Input(text: String= "") : BaseTextView() {
 
     /**
      * Root element's factory method.
@@ -18,7 +18,7 @@ open class Input(text : String= "") : BaseTextView() {
     /**
      * Text in input
      */
-    var value : String
+    var value: String
     get() = (element as HTMLInputElement).value
     set(value) {
         setValue(value)
@@ -27,7 +27,7 @@ open class Input(text : String= "") : BaseTextView() {
     /**
      * Sets text to input
      */
-    open fun setValue(value : String) {
+    open fun setValue(value: String) {
         (element as HTMLInputElement).value = value
     }
 
@@ -45,9 +45,6 @@ open class Input(text : String= "") : BaseTextView() {
     companion object {
 
         private const val DEFAULT_PADDING = "6px"
-
         private const val NO_BORDER = "none"
-
     }
-
 }

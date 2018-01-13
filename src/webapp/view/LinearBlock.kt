@@ -17,7 +17,7 @@ abstract class LinearBlock : ViewContainer() {
     /**
      * True means that subviews will be rendered in reversed order
      */
-    var reversed : Boolean = false
+    var reversed: Boolean = false
         set(value) {
             field = value
             applyFlexDirection()
@@ -47,7 +47,7 @@ abstract class LinearBlock : ViewContainer() {
      *
      * @return String name of primary axis
      */
-    abstract fun getFlexDirectionAxis() : String
+    abstract fun getFlexDirectionAxis(): String
 
     /**
      * Applies align items value to [element]
@@ -97,7 +97,7 @@ abstract class LinearBlock : ViewContainer() {
      *
      * @param flexValue string value to set into justify-content style for this gravity
      */
-    enum class ContentGravity(internal val flexValue : String) {
+    enum class ContentGravity(internal val flexValue: String) {
         START(FLEX_START),
         END(FLEX_END),
         CENTER(LinearBlock.CENTER),
@@ -110,7 +110,7 @@ abstract class LinearBlock : ViewContainer() {
          * @param isReversed true if reverse action is active
          * @return string value to set into style
          */
-        internal fun getJustifyContentValue(isReversed : Boolean) : String {
+        internal fun getJustifyContentValue(isReversed: Boolean): String {
             var value = this
             if (isReversed) {
                 when (this) {
@@ -129,7 +129,7 @@ abstract class LinearBlock : ViewContainer() {
      *
      * @param flexValue string value to set into align style for this gravity
      */
-    enum class AlignGravity(internal val flexValue : String) {
+    enum class AlignGravity(internal val flexValue: String) {
         START(FLEX_START),
         END(FLEX_END),
         CENTER(LinearBlock.CENTER),
@@ -143,7 +143,7 @@ abstract class LinearBlock : ViewContainer() {
              * @param gravity [View.Gravity] value for View
              * @return equal value of [AlignGravity]
              */
-            fun getByGravity(gravity : Gravity) = when (gravity) {
+            fun getByGravity(gravity: Gravity) = when (gravity) {
                 Gravity.START -> START
                 Gravity.END -> END
                 Gravity.CENTER -> CENTER
@@ -164,7 +164,5 @@ abstract class LinearBlock : ViewContainer() {
         private const val SPACE_BETWEEN = "space-between"
         private const val SPACE_AROUND = "space-around"
         private const val NOTHING = ""
-
     }
-
 }

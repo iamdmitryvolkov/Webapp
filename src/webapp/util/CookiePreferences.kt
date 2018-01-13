@@ -9,9 +9,9 @@ import kotlin.browser.window
  *
  * @param keyPrefix key prefix, that will be automatically add to all keys in cookies
  */
-class CookiePreferences(private val keyPrefix : String = "") : BasePreferences() {
+class CookiePreferences(private val keyPrefix: String = "") : BasePreferences() {
 
-    private fun getKey(key: String) : String {
+    private fun getKey(key: String): String {
         return window.btoa(keyPrefix + key)
     }
 
@@ -44,5 +44,4 @@ class CookiePreferences(private val keyPrefix : String = "") : BasePreferences()
             cookieMap.forEach { document.cookie = it.key + KEY_VALUE_SEPARATOR + it.value }
         }
     }
-
 }

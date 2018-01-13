@@ -10,7 +10,7 @@ import webapp.util.Color
  *
  * Override [createElementWithText] method to provide logic to different [Element]
  */
-abstract class BaseTextView() : View() {
+abstract class BaseTextView: View() {
 
     /**
      * Element, that has text managed by View
@@ -25,7 +25,7 @@ abstract class BaseTextView() : View() {
     /**
      * Color of text in view
      */
-    var textColor : String
+    var textColor: String
         get() = textElement.style.color
         set(value) {
             setTextColor(value)
@@ -45,7 +45,7 @@ abstract class BaseTextView() : View() {
      *
      * @param value new text color value
      */
-    open fun setTextColor(value : String) {
+    open fun setTextColor(value: String) {
         textElement.style.color = value
     }
 
@@ -54,7 +54,7 @@ abstract class BaseTextView() : View() {
      *
      * @param value new text size value
      */
-    fun setTextSize(value : Int) {
+    fun setTextSize(value: Int) {
         setTextSize(value.px)
     }
 
@@ -63,7 +63,7 @@ abstract class BaseTextView() : View() {
      *
      * @param value new text size value
      */
-    open fun setTextSize(value : String) {
+    open fun setTextSize(value: String) {
         element.style.fontSize = value
     }
 
@@ -79,7 +79,5 @@ abstract class BaseTextView() : View() {
     companion object {
 
         private const val DEFAULT_TEXT_SIZE = "16px"
-
     }
-
 }

@@ -15,13 +15,13 @@ interface Preferences {
 
     fun putDouble(key: String, value: Double)
 
-    fun getString(key: String, defaultValue: String? = null) : String?
+    fun getString(key: String, defaultValue: String? = null): String?
 
-    fun getInt(key: String, defaultValue: Int? = null) : Int?
+    fun getInt(key: String, defaultValue: Int? = null): Int?
 
-    fun getLong(key: String, defaultValue: Long? = null) : Long?
+    fun getLong(key: String, defaultValue: Long? = null): Long?
 
-    fun getFloat(key: String, defaultValue: Float? = null) : Float?
+    fun getFloat(key: String, defaultValue: Float? = null): Float?
 
-    fun getDouble(key: String, defaultValue: Double? = null) : Double?
+    fun getDouble(key: String, defaultValue: Double? = null): Double?
 }

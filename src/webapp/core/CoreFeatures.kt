@@ -8,6 +8,6 @@ interface CoreFeatures {
     /**
      * Shows a new [Page] in main window
      */
-    fun showPage(page : Page)
+    fun showPage(page: Page)
 
 }

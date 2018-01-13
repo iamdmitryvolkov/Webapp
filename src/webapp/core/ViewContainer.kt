@@ -33,7 +33,7 @@ abstract class ViewContainer : View() {
      *
      * @param view View to add
      */
-    fun append(view : View) {
+    fun append(view: View) {
         viewsList.add(view)
         if (isContentRendered) {
             applyStyle(view)
@@ -47,7 +47,7 @@ abstract class ViewContainer : View() {
      * @param view View to add
      * @param index number of view in list
      */
-    fun add(view : View, index : Int = viewsList.size) {
+    fun add(view: View, index: Int = viewsList.size) {
         if (index == viewsList.size) {
             append(view)
         } else {
@@ -59,14 +59,14 @@ abstract class ViewContainer : View() {
     /**
      * Returns index of view on container. returns -1 if view is not found
      */
-    fun indexOf(view : View) : Int {
+    fun indexOf(view: View): Int {
         return viewsList.indexOf(view)
     }
 
     /**
      * Removes child from container
      */
-    fun removeChild(number : Int) {
+    fun removeChild(number: Int) {
         if (number >= viewsList.size) throw Exception("View not found")
         val view = viewsList.removeAt(number)
         view.splitFromParent()
@@ -77,7 +77,7 @@ abstract class ViewContainer : View() {
      *
      * Does nothing if child is not found
      */
-    fun removeChild(child : View) {
+    fun removeChild(child: View) {
         val index = viewsList.indexOf(child)
         if (index != -1) removeChild(index)
     }
@@ -93,7 +93,7 @@ abstract class ViewContainer : View() {
     /**
      * Returns list of views it container
      */
-    fun getSubViewList() : List<View> {
+    fun getSubViewList(): List<View> {
         return viewsList.toList()
     }
 
@@ -110,7 +110,7 @@ abstract class ViewContainer : View() {
      *
      * @param view View to apply style
      */
-    abstract fun applyStyle(view : View)
+    abstract fun applyStyle(view: View)
 
     companion object {
 

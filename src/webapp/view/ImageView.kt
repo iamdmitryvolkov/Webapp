@@ -14,12 +14,12 @@ import webapp.core.wrapUrl
  *
  * [background] property will automatically set [backgroundColor] or [backgroundImage]
  */
-open class ImageView(src : String = ImageView.NOTHING) : ComplexView() {
+open class ImageView(src: String = ImageView.NOTHING) : ComplexView() {
 
     /**
      * Image source
      */
-    var src : String
+    var src: String
         get() {
             return subView?.background ?: NOTHING
         }
@@ -30,7 +30,7 @@ open class ImageView(src : String = ImageView.NOTHING) : ComplexView() {
     /**
      * Background color
      */
-    var backgroundColor : String
+    var backgroundColor: String
         get() = element.style.backgroundColor
         set(value) {
             setBackgroundColor(value)
@@ -40,7 +40,7 @@ open class ImageView(src : String = ImageView.NOTHING) : ComplexView() {
     /**
      * Background image
      */
-    var backgroundImage : String
+    var backgroundImage: String
         get() = element.style.backgroundImage
         set(value) {
             setBackgroundImage(value)
@@ -50,7 +50,7 @@ open class ImageView(src : String = ImageView.NOTHING) : ComplexView() {
     /**
      * Scale mode of image on background
      */
-    var imageScale : ImageScale = ImageScale.STRETCH
+    var imageScale: ImageScale = ImageScale.STRETCH
         set(value) {
             field = value
             applyImageScale()
@@ -96,7 +96,7 @@ open class ImageView(src : String = ImageView.NOTHING) : ComplexView() {
     /**
      * Sets imageScale for view
      */
-    private fun applyImageScale(view : View) {
+    private fun applyImageScale(view: View) {
         view.backgroundImageScale = imageScale
     }
 
@@ -127,7 +127,5 @@ open class ImageView(src : String = ImageView.NOTHING) : ComplexView() {
 
         private const val NOTHING = ""
         private const val CENTER = "center"
-
     }
-
 }
