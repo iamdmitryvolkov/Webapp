@@ -27,7 +27,7 @@ abstract class Application : CoreFeatures {
      * True if app is waiting for page lifecycle. In this case callback will not be called
      */
     var isWaitingForPageLifecycle = false
-        private set(value) {field = value}
+        private set(value) { field = value }
 
     private var currentPage: Page? = null
     private var isStarted = false
@@ -50,9 +50,9 @@ abstract class Application : CoreFeatures {
         setupDocumentBody(document.body!!)
         if (isStarted) throw IllegalStateException("Application can be stared only once")
         isStarted = true
-        window.onfocus = {onGetFocus()}
-        window.onblur = {onLostFocus()}
-        window.onresize = {onResize()}
+        window.onfocus = { onGetFocus() }
+        window.onblur = { onLostFocus() }
+        window.onresize = { onResize() }
         showPage(getDefaultPage())
     }
 
