@@ -1,5 +1,9 @@
-# Generated files
-bin/
-gen/
-out/
-
+./web/*
+.DS_Store
+.gradle/*
+.idea/*
+web/*
+build/*
+gradle/*
+gradlew
+gradlew.bat
